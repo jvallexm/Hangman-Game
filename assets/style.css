@@ -1,0 +1,15 @@
+h1{
+  font-family: "Permanent Marker";
+}
+#game-over{
+  display: none;
+}
+#display{
+  font-family: "Source Code Pro";
+}
+.btn{
+  font-weight: bold;
+  font-family: "Source Code Pro";
+  font-size: 125%;
+  margin: 3px;
+}
