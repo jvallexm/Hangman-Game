@@ -5,26 +5,71 @@
 	</title>
 	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="assets/style.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Butcherman" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
 	
 
 	<body>
 		
+		<!-- Title --> 
+
 		<header class="text-center container-fluid">
-		  <h1>Ding Dang Hangman</h1>
+		  <h1>Horror Hangman</h1>
 		</header>
+
+		
+		<div class="text-center container-fluid">
+
+			<!-- Word currently guessing -->
+
+		    <h3 id="display">Press Any Key to get Started</h3>
+
+		</div>  
+		
+		<!-- Amazing Graphics -->
+
+		<div class="text-center container-fluid" id="hangman">  
+
+			<div class="row">
+
+				<!-- a hanged man -->
+			    <div class="col-sm-6">
+				
+			    </div>
+				
+				<!-- a foreboding message -->
+			    <div class="col-sm-6">
+
+			    </div>
+
+			 </div>
+			 <div class="row">
+
+				<!-- a hanged man -->
+			    <div class="col-sm-6">
+					<h3>Wins: <span id="wins"></span></h3>
+			    </div>
+				
+				<!-- a foreboding message -->
+			    <div class="col-sm-6">
+					<h3>Failures: <span id="fails"></span></h3>
+			    </div>
+
+			 </div>
+
+		</div>
+	
+		<!-- A place for testing -->
+
 		<div id="guessing" class="text-center container-fluid">
-		  <h3 id="display"></h3>
 		  <h3 id="wrongs"></h3>
-		  <div id="game-over">
-		    <h3 id="win-display"></h3>
-		    <button id="again" class="btn">Play Again?</button>
-		  </div>
 		  <div id="input-div">
 		    <input id="input"></input><button id="submit">Submit</button>
 		  </div>
 		</div>
+
+		<!-- Alphabet board -->
 
 		<div id="alphabet" class="text-center container-fluid">
 		  <div class="row" id="abc">
@@ -36,27 +81,31 @@
 		      <button id="e" class="btn letter">E</button>
 		      <button id="f" class="btn letter">F</button>
 		      <button id="g" class="btn letter">G</button>
+		     </div>
+		   </div>   
+		   <div class="row" id="lmn">
+		    <div class="col-sm-12">   
 		      <button id="h" class="btn letter">H</button>
 		      <button id="i" class="btn letter">I</button>
-		    </div>  
-		  </div>
-		  <div class="row" id="jkl">
-		    <div class="col-sm-12">
 		      <button id="j" class="btn letter">J</button>
 		      <button id="k" class="btn letter">K</button>
 		      <button id="l" class="btn letter">L</button>
 		      <button id="m" class="btn letter">M</button>
+		    </div>  
+		  </div>
+		  <div class="row" id="lmn">
+		    <div class="col-sm-12">
 		      <button id="n" class="btn letter">N</button>
 		      <button id="o" class="btn letter">O</button>
 		      <button id="p" class="btn letter">P</button>
 		      <button id="q" class="btn letter">Q</button>
 		      <button id="r" class="btn letter">R</button>
-		    </div>
-		  </div>
-		  <div class="row" id="stu">
-		    <div class="col-sm-12">
 		      <button id="s" class="btn letter">S</button>
 		      <button id="t" class="btn letter">T</button>
+		    </div>
+		  </div>    
+		  <div class="row" id="lmn">
+		    <div class="col-sm-12">
 		      <button id="u" class="btn letter">U</button>
 		      <button id="v" class="btn letter">V</button>
 		      <button id="w" class="btn letter">W</button>
@@ -67,10 +116,10 @@
 		  </div>
 		</div>
 
-
 	</body>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src = "assets/script.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="assets/script.js"></script>
 	
 </html>
 

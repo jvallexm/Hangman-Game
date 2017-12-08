@@ -1,3 +1,4 @@
+
 var word = "almond";
 
 // Display of the unsolved word
@@ -6,8 +7,12 @@ var wordDisplay = "";
 var wrongs = 0;
 // Guessed letters
 var guessed = [];
-
-var winDisplay = "game in progress";
+// Has the game started ? 
+var start = false;
+// Total player wins
+var wins = 0;
+// Player fails
+var fails = 0;
 
 // Updates the display based on guessed letters
 var updateDisplay = () =>{
@@ -27,37 +32,52 @@ var updateDisplay = () =>{
 
   document.getElementById("display").textContent = wordDisplay;
   document.getElementById("wrongs").textContent = wrongs;
-  document.getElementById("win-display").textContent = winDisplay;
-  
+  document.getElementById("wins").textContent = wins;
+  document.getElementById("fails").textContent = fails;
+
   // Checks to see if the puzzle is complete
-  if(wordDisplay.indexOf("_")==-1 || wrongs > 7)
+  if(wordDisplay.indexOf("_")==-1 || wrongs > 10)
   {
-    if(wrongs > 7)
-      winDisplay = "You Lose :(";
+    if(wrongs > 10)
+    {
+      fails++;
+    }
     else
-      winDisplay = "You Win!";
-    document.getElementById("win-display").textContent = winDisplay;
-    document.getElementById("input-div").style.display = "none";
-    document.getElementById("game-over").style.display = "inline";
+    {
+      wins++;
+    }
+    newGame();
   }
 }
 
+var newGame = () =>{
+  console.log("this is where the game would start");
+  for(let i=0;i<guessed.length;i++){
+    console.log(i);
+    $(guessed[i]).css("color","black");
+  }
+  guessed = [];
+  wrongs = 0;
+  word = "parakeet";
+  updateDisplay();
+}
+
 // Runs the first display update on load
-updateDisplay();
+// updateDisplay();
 
  // Checks both single letters and the string entered in the input box
 var checkSplitLetters = (str) => {
   
-  if(str.length > 1 && str!=word) {
+  if(!start) {
     
-    wrongs++;
+    start = true;
     
   } else {
     
     let split = str.toLowerCase().split("");
     let check = 0;
     for(let i=0;i<split.length;i++) {
- document.getElementById(split[i]).style.color = "red";
+      $(split[i]).css("color","red");
       if(guessed.indexOf(split[i]) == -1)
         guessed.push(split[i]);
       if(word.indexOf(split[i]) != -1)
@@ -91,6 +111,7 @@ document.onkeyup = (e) =>{
     if(/[a-zA-Z]/.test(e.key) && e.key.length === 1)
     {
       console.log(e.key + " is a letter");
+      if(guessed.indexOf(e.key) == -1 )
       checkSplitLetters(e.key.toLowerCase());
     }
 }

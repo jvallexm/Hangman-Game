@@ -1,14 +1,12 @@
 body{
-  background-color: white;
+  background-color: none;
   color: red;
 }
-h1{
-  font-family: "Permanent Marker";
+h1,h3{
+  font-family: "Butcherman";
 }
 #hangman{
   max-width: 500px;
-  background-color: blue;
-  height: 200px;
 }
 #game-over{
   display: none;
@@ -17,8 +15,9 @@ h1{
   display: none;
 }
 #display{
+  margin-top: -5px;
   font-family: "Butcherman";
-  font-size: 250%;
+  font-size: 300%;
 }
 .btn{
   font-weight: bold;
