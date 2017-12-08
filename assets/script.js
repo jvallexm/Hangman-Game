@@ -1,4 +1,4 @@
-var word = "fff";
+var word = "almond";
 
 // Display of the unsolved word
 var wordDisplay = "";
@@ -13,16 +13,22 @@ var winDisplay = "game in progress";
 var updateDisplay = () =>{
   
   let splitDisplay = word.split("");
+
   // Replaces letters not in guessed with "_"
+
   for(let i=0;i<splitDisplay.length;i++) {
     if(guessed.indexOf(splitDisplay[i]) == -1 && splitDisplay[i] != " ")
       splitDisplay[i] = "_";
   }
+
   wordDisplay = splitDisplay.join("");
+
   // Updates the word display
+
   document.getElementById("display").textContent = wordDisplay;
   document.getElementById("wrongs").textContent = wrongs;
   document.getElementById("win-display").textContent = winDisplay;
+  
   // Checks to see if the puzzle is complete
   if(wordDisplay.indexOf("_")==-1 || wrongs > 7)
   {
@@ -51,7 +57,7 @@ var checkSplitLetters = (str) => {
     let split = str.toLowerCase().split("");
     let check = 0;
     for(let i=0;i<split.length;i++) {
-      document.getElementById(split[i]).disabled = true;
+ document.getElementById(split[i]).style.color = "red";
       if(guessed.indexOf(split[i]) == -1)
         guessed.push(split[i]);
       if(word.indexOf(split[i]) != -1)
@@ -81,7 +87,15 @@ document.getElementById("submit").onclick = ()=>{
   convertInput(); 
 }
 
+document.onkeyup = (e) =>{
+    if(/[a-zA-Z]/.test(e.key) && e.key.length === 1)
+    {
+      console.log(e.key + " is a letter");
+      checkSplitLetters(e.key.toLowerCase());
+    }
+}
 // Checks letters when the letter buttons are clicked on
 $(".letter").click((e)=>{
-    checkSplitLetters(e.target.id);
+  if(guessed.indexOf(e.target.id) == -1)
+  checkSplitLetters(e.target.id);
 });

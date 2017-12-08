@@ -1,15 +1,47 @@
+body{
+  background-color: white;
+  color: red;
+}
 h1{
   font-family: "Permanent Marker";
+}
+#hangman{
+  max-width: 500px;
+  background-color: blue;
+  height: 200px;
 }
 #game-over{
   display: none;
 }
+#input-div{
+  display: none;
+}
 #display{
-  font-family: "Source Code Pro";
+  font-family: "Butcherman";
+  font-size: 250%;
 }
 .btn{
   font-weight: bold;
-  font-family: "Source Code Pro";
-  font-size: 125%;
-  margin: 3px;
+  font-family: "Butcherman";
+  font-size: 250%;
+  margin: 0px;
+  background-color: black;
+  color: black;
+}
+.btn:hover{
+  color: red;
+}
+.letter{
+  width: 50px;
+}
+.btn:active{
+  color: red;
+  border: none !important;
+}
+.btn:focus{
+  color: red;
+  border: none !important;
+}
+.red{
+  color: red;
 }
