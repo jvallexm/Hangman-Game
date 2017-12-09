@@ -30,6 +30,22 @@ var words = {
   // Gets a new word from the list
   getNewWord: (completed) => {
 
+     let incomplete = [];
+
+     // Adds incompleted words to the incomplete array
+     for(let i=0;i<words.list.length;i++) {
+        if(completed.indexOf(words.list[i].name) === -1)
+          incomplete.push(words.list[i].name);
+     }
+
+     // If you guess all the words you win? Escape??
+     if(incomplete.length === 0) {
+
+     }
+     else { 
+
+     }
+
   },
 
   list: []
@@ -44,9 +60,9 @@ const hangman = {
 
         let lower = char.toLowerCase();
         $("#" + lower).css("color","red");
-        if(game.guessed.indexOf(lower) == -1)
+        if(game.guessed.indexOf(lower) === -1)
           game.guessed.push(lower);
-        if(game.word.indexOf(lower) == -1)
+        if(game.word.indexOf(lower) === -1)
           game.wrongs++; 
         hangman.updateDisplay();
     },
@@ -54,7 +70,7 @@ const hangman = {
     // Checks letters when the letter buttons are clicked on
 
     click: (e)=> {
-      if(game.guessed.indexOf(e.target.id) == -1)
+      if(game.guessed.indexOf(e.target.id) === -1)
        hangman.checkLetter(e.target.id);
     },
 
@@ -65,11 +81,13 @@ const hangman = {
 
           game.start = true;
           hangman.updateDisplay();
+          document.getElementById("stats").style.display    = "inline";
+          document.getElementById("guessing").style.display = "inline";
 
         } else if(/[a-zA-Z]/.test(e.key) && e.key.length === 1) {
 
           console.log(e.key + " is a letter");
-          if(game.guessed.indexOf(e.key) == -1)
+          if(game.guessed.indexOf(e.key) === -1)
             hangman.checkLetter(e.key.toLowerCase());
 
         }
@@ -101,23 +119,21 @@ const hangman = {
         // Replaces letters not in guessed with "_"
 
         for(let i=0;i<splitDisplay.length;i++) {
-          if(game.guessed.indexOf(splitDisplay[i]) == -1 && splitDisplay[i] != " ")
+          if(game.guessed.indexOf(splitDisplay[i]) === -1 && splitDisplay[i] !== " ")
             splitDisplay[i] = "_";
         }
 
         game.wordDisplay = splitDisplay.join("");
 
         // Updates the word display
-
-        document.getElementById("stats").style.display    = "inline";
-        document.getElementById("guessing").style.display = "inline";
+        
         document.getElementById("display").textContent    = game.wordDisplay;
         document.getElementById("wrongs").textContent     = 10 - game.wrongs;
         document.getElementById("wins").textContent       = game.wins;
         document.getElementById("fails").textContent      = game.fails;
 
         // Checks to see if the puzzle is complete
-        if(game.wordDisplay.indexOf("_")==-1 || game.wrongs > 9) {
+        if(game.wordDisplay.indexOf("_") === -1 || game.wrongs > 9) {
 
           if(game.wrongs > 9) {
 
