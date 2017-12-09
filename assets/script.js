@@ -75,7 +75,9 @@ var words = {
   },{
     name: "dracula"
   },{
-    name: "ronald reagan"
+    name: "ronald reagan",
+    quote: "This man... this monster!",
+    src: `images/reagan.jpeg`
   }],
 
   updateQuote: (word) => {
@@ -178,6 +180,7 @@ const hangman = {
         
         document.getElementById("display").textContent    = game.wordDisplay;
         document.getElementById("wrongs").textContent     = 10 - game.wrongs;
+        $("#white").css("opacity",((10-game.wrongs)/10).toString());
         document.getElementById("wins").textContent       = game.wins;
         document.getElementById("fails").textContent      = game.fails;
 
@@ -187,6 +190,9 @@ const hangman = {
           if(game.wrongs > 9) {
 
             game.fails++;
+            document.getElementById("solved-title").textContent = "Failure...";
+            document.getElementById("solved-quote").textContent = "...try again if you dare!";
+            document.getElementById("image").src = null;
 
           } else {
 

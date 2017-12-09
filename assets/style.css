@@ -27,6 +27,17 @@ img{
   font-family: "Butcherman";
   font-size: 300%;
 }
+#white{
+  background-color: white;
+  min-height: 200px;
+  position: relative;
+}
+#orz{
+  position: absolute;
+  bottom: 10px;
+  right: 50%;
+  font-size: 125%;
+}
 #stats{
   display: none;
 }
