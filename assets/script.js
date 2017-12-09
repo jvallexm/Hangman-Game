@@ -41,14 +41,35 @@ var words = {
      // If you guess all the words you win? Escape??
      if(incomplete.length === 0) {
 
-     }
-     else { 
+        console.log("you win, I guess!");
+
+     } else { 
+
+        game.word = incomplete[Math.floor(Math.random() * (incomplete.length-1))];
 
      }
 
   },
 
-  list: []
+  list: [{
+    name: "existential dread"
+  },{
+    name: "spooooooooopy"
+  },{
+    name: "two ghosts"
+  },{
+    name: "large bean"
+  },{
+    name: "thriller"
+  },{
+    name: "skeleton"
+  },{
+    name: "cthlulu"
+  },{
+    name: "dracula"
+  },{
+    name: "ronald reagan"
+  }]
 
 }
 
@@ -100,13 +121,13 @@ const hangman = {
 
       // Resets all the letter buttons to color: black
       for(let i=0;i<game.guessed.length;i++){
-        console.log(i);
         $("#" + game.guessed[i]).css("color","black");
       }
 
       game.guessed = [];
       game.wrongs  = 0;
-      game.word    = "parakeet";
+      game.completedWords.push(game.word);
+      words.getNewWord(game.completedWords);
       hangman.updateDisplay();
     },
 
@@ -149,6 +170,8 @@ const hangman = {
     }
 
 }
+
+words.getNewWord(game.completedWords);
 
 document.onkeyup = hangman.keyup;
 
