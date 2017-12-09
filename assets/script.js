@@ -69,11 +69,14 @@ var words = {
     quote: `...for no mere mortal can resist the evil of the thriller!`,
     src: `images/thriller.jpeg`
   },{
-    name: "skeleton"
+    name: "skeleton",
+    src: `images/skeleton.jpg`
   },{
-    name: "cthulhu"
+    name: "cthulhu",
+    src: `images/cthulhu.jpg`
   },{
-    name: "dracula"
+    name: "dracula",
+    src: `images/dracula.jpeg`
   },{
     name: "ronald reagan",
     quote: "This man... this monster!",
@@ -146,7 +149,6 @@ const hangman = {
     // Select a new word after the game has ended
 
     newGame: () => {
-      console.log("this is where the game would restart");
 
       // Resets all the letter buttons to color: black
       for(let i=0;i<game.guessed.length;i++){
