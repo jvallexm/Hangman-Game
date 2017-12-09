@@ -16,13 +16,19 @@ h1,h3{
 #game-over{
   display: none;
 }
-#input-div{
+#guessing{
   display: none;
 }
 #display{
   margin-top: -5px;
   font-family: "Butcherman";
   font-size: 300%;
+}
+#stats{
+  display: none;
+}
+#wrongs{
+  margin-left: 10px;
 }
 .btn{
   font-weight: bold;

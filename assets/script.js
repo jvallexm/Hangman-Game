@@ -1,5 +1,8 @@
 var game = {
 
+  // Words the user has completed
+  completedWords: [],
+
   // Total times player failed to guess the word
   fails:         0,
 
@@ -20,6 +23,17 @@ var game = {
 
   // incorrect guesses by the player
   wrongs:       0
+}
+
+var words = {
+
+  // Gets a new word from the list
+  getNewWord: (completed) => {
+
+  },
+
+  list: []
+
 }
 
 const hangman = {
@@ -64,14 +78,17 @@ const hangman = {
     // Select a new word after the game has ended
 
     newGame: () => {
-      console.log("this is where the game would start");
+      console.log("this is where the game would restart");
+
+      // Resets all the letter buttons to color: black
       for(let i=0;i<game.guessed.length;i++){
         console.log(i);
         $("#" + game.guessed[i]).css("color","black");
       }
+
       game.guessed = [];
-      game.wrongs = 0;
-      game.word = "parakeet";
+      game.wrongs  = 0;
+      game.word    = "parakeet";
       hangman.updateDisplay();
     },
 
@@ -92,21 +109,24 @@ const hangman = {
 
         // Updates the word display
 
-        document.getElementById("display").textContent = game.wordDisplay;
-        document.getElementById("wrongs").textContent  = game.wrongs;
-        document.getElementById("wins").textContent    = game.wins;
-        document.getElementById("fails").textContent   = game.fails;
+        document.getElementById("stats").style.display    = "inline";
+        document.getElementById("guessing").style.display = "inline";
+        document.getElementById("display").textContent    = game.wordDisplay;
+        document.getElementById("wrongs").textContent     = 10 - game.wrongs;
+        document.getElementById("wins").textContent       = game.wins;
+        document.getElementById("fails").textContent      = game.fails;
 
         // Checks to see if the puzzle is complete
-        if(game.wordDisplay.indexOf("_")==-1 || game.wrongs > 10)
-        {
-          if(game.wrongs > 9)
-          {
+        if(game.wordDisplay.indexOf("_")==-1 || game.wrongs > 9) {
+
+          if(game.wrongs > 9) {
+
             game.fails++;
-          }
-          else
-          {
+
+          } else {
+
             game.wins++;
+
           }
           hangman.newGame();
         }
