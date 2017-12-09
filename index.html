@@ -25,6 +25,12 @@
 
 		</div>  
 		
+		<!-- A place for guessing -->
+
+		<div id="guessing" class="text-center container-fluid">
+		  <h3><span id="the-guess"></span> <span id="wrongs"></span></h3>
+		</div>
+
 		<!-- Amazing Graphics -->
 
 		<div class="text-center container-fluid" id="hangman">  
@@ -38,9 +44,15 @@
 				
 				<!-- a foreboding message -->
 			    <div class="col-sm-6">
-					<div></div>
+					<div>
+						<img id="image">
+					</div>
 			    </div>
 
+			 </div>
+			 <div class="row the-quote">
+			 	<h3 id="solved-title"></h3>
+			 	<h5 id="solved-quote"></h5>
 			 </div>
 			 <div class="row" id="stats">
 
@@ -56,12 +68,6 @@
 
 			 </div>
 
-		</div>
-	
-		<!-- A place for guessing -->
-
-		<div id="guessing" class="text-center container-fluid">
-		  <h3>Guesses Remaining: <span id="wrongs"></span></h3>
 		</div>
 
 		<!-- Alphabet board -->

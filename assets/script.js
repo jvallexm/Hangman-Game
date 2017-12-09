@@ -46,7 +46,7 @@ var words = {
 
      } else { 
 
-        game.word = incomplete[Math.floor(Math.random() * (incomplete.length-1))];
+        game.word = incomplete[Math.floor(Math.random() * incomplete.length)];
 
      }
 
@@ -59,18 +59,33 @@ var words = {
   },{
     name: "two ghosts"
   },{
-    name: "large bean"
+    name: "large bean",
+    quote: `When nights are chill and filled with doom, again will rise the cursed legume...`,
+    src: `images/largebean.jpg`
   },{
     name: "thriller"
   },{
     name: "skeleton"
   },{
-    name: "cthlulu"
+    name: "cthulhu"
   },{
     name: "dracula"
   },{
     name: "ronald reagan"
-  }]
+  }],
+
+  updateQuote: (word) => {
+
+    for(let i=0;i<words.list.length;i++){
+      if(words.list[i].name == word) {
+        document.getElementById("solved-title").textContent = word;
+        document.getElementById("solved-quote").textContent = words.list[i].quote;
+        document.getElementById("image").src = words.list[i].src;
+        return;
+      }
+    }
+
+  }
 
 }
 
@@ -99,7 +114,7 @@ const hangman = {
     // Checks when letter keys are pressed
 
     keyup: (e) =>{
-      
+
         if(!game.start){
 
           // Runs if the game hasn't started and the player has pressed any key
@@ -107,7 +122,8 @@ const hangman = {
           game.start = true;
           hangman.updateDisplay();
           document.getElementById("stats").style.display    = "inline";
-          document.getElementById("guessing").style.display = "inline";
+          document.getElementById("the-guess").textContent  = "Guesses Remaining: ";
+
 
         } else if(  /[a-zA-Z]/.test(e.key) 
                     && e.key.length === 1
@@ -171,8 +187,10 @@ const hangman = {
           } else {
 
             game.wins++;
+            words.updateQuote(game.word);
 
           }
+
           hangman.newGame();
         }
     }
@@ -180,6 +198,7 @@ const hangman = {
 }
 
 words.getNewWord(game.completedWords);
+//game.word = "large bean";
 
 document.onkeyup = hangman.keyup;
 
