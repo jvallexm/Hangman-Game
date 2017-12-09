@@ -54,7 +54,7 @@ var newGame = () =>{
   console.log("this is where the game would start");
   for(let i=0;i<guessed.length;i++){
     console.log(i);
-    $(guessed[i]).css("color","black");
+    $("#" + guessed[i]).css("color","black");
   }
   guessed = [];
   wrongs = 0;
@@ -77,7 +77,8 @@ var checkSplitLetters = (str) => {
     let split = str.toLowerCase().split("");
     let check = 0;
     for(let i=0;i<split.length;i++) {
-      $(split[i]).css("color","red");
+      
+      $("#" + split[i]).css("color","red");
       if(guessed.indexOf(split[i]) == -1)
         guessed.push(split[i]);
       if(word.indexOf(split[i]) != -1)
@@ -112,9 +113,10 @@ document.onkeyup = (e) =>{
     {
       console.log(e.key + " is a letter");
       if(guessed.indexOf(e.key) == -1 )
-      checkSplitLetters(e.key.toLowerCase());
+        checkSplitLetters(e.key.toLowerCase());
     }
 }
+
 // Checks letters when the letter buttons are clicked on
 $(".letter").click((e)=>{
   if(guessed.indexOf(e.target.id) == -1)
