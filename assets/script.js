@@ -13,7 +13,7 @@ var game = {
   start:        false,
 
   // current word being guessed by the player
-  word:         "almond",
+  word:         "",
 
   // Display of the word to the player
   wordDisplay:  "",
@@ -24,6 +24,7 @@ var game = {
   // incorrect guesses by the player
   wrongs:       0
 }
+
 
 var words = {
 
@@ -98,17 +99,23 @@ const hangman = {
     // Checks when letter keys are pressed
 
     keyup: (e) =>{
+      
         if(!game.start){
+
+          // Runs if the game hasn't started and the player has pressed any key
 
           game.start = true;
           hangman.updateDisplay();
           document.getElementById("stats").style.display    = "inline";
           document.getElementById("guessing").style.display = "inline";
 
-        } else if(/[a-zA-Z]/.test(e.key) && e.key.length === 1) {
+        } else if(  /[a-zA-Z]/.test(e.key) 
+                    && e.key.length === 1
+                    && game.guessed.indexOf(e.key) === -1) {
 
-          console.log(e.key + " is a letter");
-          if(game.guessed.indexOf(e.key) === -1)
+          // Runs if the key pressed is a key and that key is a letter
+          // and that letter has not already been guessed by the player
+
             hangman.checkLetter(e.key.toLowerCase());
 
         }
@@ -130,6 +137,7 @@ const hangman = {
       words.getNewWord(game.completedWords);
       hangman.updateDisplay();
     },
+
 
     // Updates the display when letters are guessed or the player has won
 
