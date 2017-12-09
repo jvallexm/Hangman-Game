@@ -53,17 +53,21 @@ var words = {
   },
 
   list: [{
-    name: "existential dread"
+    name: "existential dread",
+    quote: "Everything is meaningless...",
+    src: "images/void.jpg"
   },{
-    name: "spooooooooopy"
-  },{
-    name: "two ghosts"
+    name: "two ghosts",
+    quote: "Significantly scaier than one.",
+    src: "images/twoghosts.jpg"
   },{
     name: "large bean",
     quote: `When nights are chill and filled with doom, again will rise the cursed legume...`,
     src: `images/largebean.jpg`
   },{
-    name: "thriller"
+    name: "thriller",
+    quote: `...for no mere mortal can resist the evil of the thriller!`,
+    src: `images/thriller.jpeg`
   },{
     name: "skeleton"
   },{
@@ -198,7 +202,6 @@ const hangman = {
 }
 
 words.getNewWord(game.completedWords);
-//game.word = "large bean";
 
 document.onkeyup = hangman.keyup;
 
