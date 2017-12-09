@@ -9,18 +9,21 @@ img{
   width: 100%;
   max-height: 200px
 }
+/*  Title */
 .big-big{
   font-size: 400%;
   margin-top: 50px;
   text-shadow: -2px -2px orange;
 }
+
 #hangman{
-  max-width: 700px;
+  max-width: 600px;
 }
-#game-over{
-  display: none;
-}
-#guessing{
+#help{
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 30px;
+  border: 2px solid red;
 }
 #display{
   margin-top: -5px;
