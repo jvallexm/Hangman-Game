@@ -1,25 +1,26 @@
+var game = {
 
-var word = "almond";
+  // Total times player failed to guess the word
+  fails:         0,
 
-// Display of the unsolved word
-var wordDisplay = "";
+  // letters that have been guessed by the player
+  guessed:      [],
 
-// Incorrect guesses
-var wrongs = 0;
+  // Has the game started
+  start:        false,
 
-// Guessed letters
-var guessed = [];
+  // current word being guessed by the player
+  word:         "almond",
 
-// Has the game started ? 
-var start = false;
+  // Display of the word to the player
+  wordDisplay:  "",
 
-// Total player wins
-var wins = 0;
+  // Times the player has successfully the word
+  wins:         0,
 
-// Player fails
-var fails = 0;
-
-// Updates the display based on guessed letters
+  // incorrect guesses by the player
+  wrongs:       0
+}
 
 const hangman = {
 
@@ -28,25 +29,35 @@ const hangman = {
     checkLetter: (char) => {
 
         let lower = char.toLowerCase();
-        let check = 0;
         $("#" + lower).css("color","red");
-        if(guessed.indexOf(lower) == -1)
-          guessed.push(lower);
-        if(word.indexOf(lower) != -1)
-          wrongs++; 
+        if(game.guessed.indexOf(lower) == -1)
+          game.guessed.push(lower);
+        if(game.word.indexOf(lower) == -1)
+          game.wrongs++; 
         hangman.updateDisplay();
     },
 
-    //
+    // Checks letters when the letter buttons are clicked on
+
+    click: (e)=> {
+      if(game.guessed.indexOf(e.target.id) == -1)
+       hangman.checkLetter(e.target.id);
+    },
+
+    // Checks when letter keys are pressed
 
     keyup: (e) =>{
-        if(!start){
-          start = true;
+        if(!game.start){
+
+          game.start = true;
           hangman.updateDisplay();
+
         } else if(/[a-zA-Z]/.test(e.key) && e.key.length === 1) {
+
           console.log(e.key + " is a letter");
-          if(guessed.indexOf(e.key) == -1)
+          if(game.guessed.indexOf(e.key) == -1)
             hangman.checkLetter(e.key.toLowerCase());
+
         }
     },
 
@@ -54,46 +65,48 @@ const hangman = {
 
     newGame: () => {
       console.log("this is where the game would start");
-      for(let i=0;i<guessed.length;i++){
+      for(let i=0;i<game.guessed.length;i++){
         console.log(i);
-        $("#" + guessed[i]).css("color","black");
+        $("#" + game.guessed[i]).css("color","black");
       }
-      guessed = [];
-      wrongs = 0;
-      word = "parakeet";
+      game.guessed = [];
+      game.wrongs = 0;
+      game.word = "parakeet";
       hangman.updateDisplay();
     },
 
+    // Updates the display when letters are guessed or the player has won
+
     updateDisplay: () =>{
   
-        let splitDisplay = word.split("");
+        let splitDisplay = game.word.split("");
 
         // Replaces letters not in guessed with "_"
 
         for(let i=0;i<splitDisplay.length;i++) {
-          if(guessed.indexOf(splitDisplay[i]) == -1 && splitDisplay[i] != " ")
+          if(game.guessed.indexOf(splitDisplay[i]) == -1 && splitDisplay[i] != " ")
             splitDisplay[i] = "_";
         }
 
-        wordDisplay = splitDisplay.join("");
+        game.wordDisplay = splitDisplay.join("");
 
         // Updates the word display
 
-        document.getElementById("display").textContent = wordDisplay;
-        document.getElementById("wrongs").textContent = wrongs;
-        document.getElementById("wins").textContent = wins;
-        document.getElementById("fails").textContent = fails;
+        document.getElementById("display").textContent = game.wordDisplay;
+        document.getElementById("wrongs").textContent  = game.wrongs;
+        document.getElementById("wins").textContent    = game.wins;
+        document.getElementById("fails").textContent   = game.fails;
 
         // Checks to see if the puzzle is complete
-        if(wordDisplay.indexOf("_")==-1 || wrongs > 10)
+        if(game.wordDisplay.indexOf("_")==-1 || game.wrongs > 10)
         {
-          if(wrongs > 10)
+          if(game.wrongs > 9)
           {
-            fails++;
+            game.fails++;
           }
           else
           {
-            wins++;
+            game.wins++;
           }
           hangman.newGame();
         }
@@ -103,8 +116,4 @@ const hangman = {
 
 document.onkeyup = hangman.keyup;
 
-// Checks letters when the letter buttons are clicked on
-$(".letter").click((e)=>{
-  if(guessed.indexOf(e.target.id) == -1)
-  hangman.checkLetter(e.target.id);
-});
+$(".letter").click(hangman.click);

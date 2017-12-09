@@ -1,9 +1,14 @@
 body{
-  background-color: none;
+  background-color: black;
   color: red;
 }
 h1,h3{
   font-family: "Butcherman";
+}
+.big-big{
+  font-size: 400%;
+  margin-top: 50px;
+  text-shadow: -2px -2px orange;
 }
 #hangman{
   max-width: 500px;
