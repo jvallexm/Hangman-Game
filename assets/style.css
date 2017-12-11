@@ -42,7 +42,7 @@ img{
   font-size: 125%;
 }
 #stats{
-  display: none;
+  display: hidden;
 }
 #wrongs{
   margin-left: 10px;

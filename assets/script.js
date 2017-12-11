@@ -1,4 +1,6 @@
-var game = {
+
+
+const game = {
 
   // Words the user has completed
   completedWords: [],
@@ -23,10 +25,10 @@ var game = {
 
   // incorrect guesses by the player
   wrongs:       0
-}
+};
 
 
-var words = {
+const words = {
 
   // Gets a new word from the list
   getNewWord: (completed) => {
@@ -42,13 +44,11 @@ var words = {
      // If you guess all the words you win? Escape??
      if(incomplete.length === 0) {
 
-        console.log("you win, I guess!");
+        game.completed = [];
+        incomplete = words.list;
 
-     } else { 
-
-        game.word = incomplete[Math.floor(Math.random() * incomplete.length)];
-
-     }
+     } 
+    game.word = incomplete[Math.floor(Math.random() * incomplete.length)];
 
   },
 
@@ -70,13 +70,16 @@ var words = {
     src: `images/thriller.jpeg`
   },{
     name: "skeleton",
-    src: `images/skeleton.jpg`
+    src: `images/skeleton.jpg`,
+    quote: `Spooky scary skeletons...`
   },{
     name: "cthulhu",
-    src: `images/cthulhu.jpg`
+    src: `images/cthulhu.jpg`,
+    quote: `In his house at R'lyeh, dead Cthulhu waits dreaming...`
   },{
     name: "dracula",
-    src: `images/dracula.jpeg`
+    src: `images/dracula.jpeg`,
+    quote: `Count Dracula, lord of vampires and the sovereign of the damned...`
   },{
     name: "ronald reagan",
     quote: "This man... this monster!",
@@ -96,7 +99,7 @@ var words = {
 
   }
 
-}
+};
 
 const hangman = {
 
@@ -130,7 +133,6 @@ const hangman = {
 
           game.start = true;
           hangman.updateDisplay();
-          document.getElementById("stats").style.display    = "inline";
           document.getElementById("the-guess").textContent  = "Guesses Remaining: ";
 
 
@@ -207,7 +209,7 @@ const hangman = {
         }
     }
 
-}
+};
 
 words.getNewWord(game.completedWords);
 
