@@ -45,7 +45,7 @@ const words = {
      if(incomplete.length === 0) {
 
         game.completed = [];
-        words.getNewWord(words.list);
+        words.getNewWord(game.completed);
 
      } else {
 
