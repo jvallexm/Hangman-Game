@@ -45,10 +45,13 @@ const words = {
      if(incomplete.length === 0) {
 
         game.completed = [];
-        incomplete = words.list;
+        words.getNewWord(words.list);
 
-     } 
-    game.word = incomplete[Math.floor(Math.random() * incomplete.length)];
+     } else {
+
+        game.word = incomplete[Math.floor(Math.random() * incomplete.length)];
+
+    }
 
   },
 
@@ -168,7 +171,9 @@ const hangman = {
     // Updates the display when letters are guessed or the player has won
 
     updateDisplay: () =>{
-  
+        
+        console.log(game.word);
+
         let splitDisplay = game.word.split("");
 
         // Replaces letters not in guessed with "_"
