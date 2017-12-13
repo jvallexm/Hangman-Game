@@ -89,6 +89,8 @@ const words = {
     src: `images/reagan.jpeg`
   }],
 
+  phrases: ["Oh god, please help me!","...why is it getting darker?","..what is this a joke?","Well it's not funny...","It's just hangman, right?","...RIGHT??", "..did you try guessing all the vowels?", "Oh no, it's too late..","Tell my mom I'm sorry...","...goodbye..."],
+
   updateQuote: (word) => {
 
     for(let i=0;i<words.list.length;i++){
@@ -157,7 +159,9 @@ const hangman = {
 
       // Resets all the letter buttons to color: black
       for(let i=0;i<game.guessed.length;i++){
+
         $("#" + game.guessed[i]).css("color","black");
+
       }
 
       game.guessed = [];
@@ -192,6 +196,7 @@ const hangman = {
         $("#white").css("opacity",((10-game.wrongs)/10).toString());
         document.getElementById("wins").textContent       = game.wins;
         document.getElementById("fails").textContent      = game.fails;
+        document.getElementById("help").textContent       = words.phrases[game.wrongs];
 
         // Checks to see if the puzzle is complete
         if(game.wordDisplay.indexOf("_") === -1 || game.wrongs > 9) {
